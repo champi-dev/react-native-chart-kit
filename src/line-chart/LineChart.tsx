@@ -841,7 +841,24 @@ class LineChart extends AbstractChart<LineChartProps, LineChartState> {
     const legendOffset = this.props.data.legend ? height * 0.15 : 0;
 
     return (
-      <View style={style}>
+      <View style={style}>        
+        {withScrollableDot && (
+          <ScrollView
+            style={StyleSheet.absoluteFill}
+            contentContainerStyle={{ width: width * 2 }}
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}
+            onScroll={Animated.event([
+              {
+                nativeEvent: {
+                  contentOffset: { x: scrollableDotHorizontalOffset }
+                }
+              }
+            ])}
+            horizontal
+            bounces={false}
+          />
+        )}
         <Svg
           height={height + (paddingBottom as number) + legendOffset}
           width={width - (margin as number) * 2 - (marginRight as number)}
@@ -879,6 +896,7 @@ class LineChart extends AbstractChart<LineChartProps, LineChartState> {
                     })
                   : null)}
             </G>
+            {/* [TO-DO]: Make the following labels render on the right side of the graph */}
             <G>
               {withHorizontalLabels &&
                 this.renderHorizontalLabels({
@@ -891,6 +909,7 @@ class LineChart extends AbstractChart<LineChartProps, LineChartState> {
                   decimalPlaces: chartConfig.decimalPlaces
                 })}
             </G>
+            {/* end */}
             <G>
               {withVerticalLines &&
                 (withInnerLines
@@ -970,23 +989,6 @@ class LineChart extends AbstractChart<LineChartProps, LineChartState> {
             </G>
           </G>
         </Svg>
-        {withScrollableDot && (
-          <ScrollView
-            style={StyleSheet.absoluteFill}
-            contentContainerStyle={{ width: width * 2 }}
-            showsHorizontalScrollIndicator={false}
-            scrollEventThrottle={16}
-            onScroll={Animated.event([
-              {
-                nativeEvent: {
-                  contentOffset: { x: scrollableDotHorizontalOffset }
-                }
-              }
-            ])}
-            horizontal
-            bounces={false}
-          />
-        )}
       </View>
     );
   }
