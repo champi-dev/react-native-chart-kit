@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { Dimensions } from "react-native";
 import { Defs, Line, LinearGradient, Stop, Text } from "react-native-svg";
 
 import { ChartConfig, Dataset, PartialBy } from "./HelperTypes";
+
+const screenWidth = Dimensions.get('window').width
 
 export interface AbstractChartProps {
   fromZero?: boolean;
@@ -213,7 +216,7 @@ class AbstractChart<
       }
 
       const basePosition = height * verticalLabelsHeightPercentage;
-      const x = paddingRight - yLabelsOffset;
+      const x = screenWidth; // [TO-DO]: Adjust this variable that manages the x position of the horizontal labels (paddingRight - yLabelsOffset) + 
       const y =
         count === 1 && this.props.fromZero
           ? paddingTop + 4
