@@ -1,106 +1,103 @@
-import "babel-polyfill";
-
-import React from "react";
-import { Dimensions, ScrollView, StatusBar, Text } from "react-native";
-import FlashMessage, { showMessage } from "react-native-flash-message";
-import ScrollableTabView from "react-native-scrollable-tab-view";
+import React from 'react';
+import {Dimensions, ScrollView, StatusBar, Text} from 'react-native';
+import FlashMessage, {showMessage} from 'react-native-flash-message';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 import {
   contributionData,
   data,
   pieChartData,
   progressChartData,
-  stackedBarGraphData
-} from "./data";
+  stackedBarGraphData,
+} from './data';
 import {
   BarChart,
   ContributionGraph,
   LineChart,
-  PieChart,
   ProgressChart,
-  StackedBarChart
-} from "./dist/";
+  StackedBarChart,
+} from './src/';
 
 // in Expo - swipe left to see the following styling, or create your own
 const chartConfigs = [
   {
-    backgroundColor: "#000000",
-    backgroundGradientFrom: "#1E2923",
-    backgroundGradientTo: "#08130D",
+    backgroundColor: '#000000',
+    backgroundGradientFrom: '#1E2923',
+    backgroundGradientTo: '#08130D',
     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
     style: {
-      borderRadius: 16
-    }
+      borderRadius: 16,
+    },
   },
   {
-    backgroundColor: "#022173",
-    backgroundGradientFrom: "#022173",
-    backgroundGradientTo: "#1b3fa0",
+    backgroundColor: '#022173',
+    backgroundGradientFrom: '#022173',
+    backgroundGradientTo: '#1b3fa0',
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     style: {
-      borderRadius: 16
+      borderRadius: 16,
     },
     propsForBackgroundLines: {
-      strokeDasharray: "" // solid background lines with no dashes
-    }
+      strokeDasharray: '', // solid background lines with no dashes
+    },
   },
   {
-    backgroundColor: "#ffffff",
-    backgroundGradientFrom: "#ffffff",
-    backgroundGradientTo: "#ffffff",
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`
+    backgroundColor: '#ffffff',
+    backgroundGradientFrom: '#ffffff',
+    backgroundGradientTo: '#ffffff',
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   },
   {
-    backgroundColor: "#ffffff",
-    backgroundGradientFrom: "#ffffff",
-    backgroundGradientTo: "#ffffff",
-    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`
+    backgroundColor: '#ffffff',
+    backgroundGradientFrom: '#ffffff',
+    backgroundGradientTo: '#ffffff',
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   },
   {
-    backgroundColor: "#26872a",
-    backgroundGradientFrom: "#43a047",
-    backgroundGradientTo: "#66bb6a",
+    backgroundColor: '#26872a',
+    backgroundGradientFrom: '#43a047',
+    backgroundGradientTo: '#66bb6a',
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     style: {
-      borderRadius: 16
-    }
+      borderRadius: 16,
+    },
   },
   {
-    backgroundColor: "#000000",
-    backgroundGradientFrom: "#000000",
-    backgroundGradientTo: "#000000",
-    color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
+    backgroundColor: '#000000',
+    backgroundGradientFrom: '#000000',
+    backgroundGradientTo: '#000000',
+    color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`,
   },
   {
-    backgroundColor: "#0091EA",
-    backgroundGradientFrom: "#0091EA",
-    backgroundGradientTo: "#0091EA",
-    color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
+    backgroundColor: '#0091EA',
+    backgroundGradientFrom: '#0091EA',
+    backgroundGradientTo: '#0091EA',
+    color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`,
   },
   {
-    backgroundColor: "#e26a00",
-    backgroundGradientFrom: "#fb8c00",
-    backgroundGradientTo: "#ffa726",
+    backgroundColor: '#e26a00',
+    backgroundGradientFrom: '#fb8c00',
+    backgroundGradientTo: '#ffa726',
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     style: {
-      borderRadius: 16
-    }
+      borderRadius: 16,
+    },
   },
   {
-    backgroundColor: "#b90602",
-    backgroundGradientFrom: "#e53935",
-    backgroundGradientTo: "#ef5350",
+    backgroundColor: '#b90602',
+    backgroundGradientFrom: '#e53935',
+    backgroundGradientTo: '#ef5350',
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     style: {
-      borderRadius: 16
-    }
+      borderRadius: 16,
+    },
   },
   {
-    backgroundColor: "#ff3e03",
-    backgroundGradientFrom: "#ff3e03",
-    backgroundGradientTo: "#ff3e03",
-    color: (opacity = 1) => `rgba(${0}, ${0}, ${0}, ${opacity})`
-  }
+    backgroundColor: '#ff3e03',
+    backgroundGradientFrom: '#ff3e03',
+    backgroundGradientTo: '#ff3e03',
+    color: (opacity = 1) => `rgba(${0}, ${0}, ${0}, ${opacity})`,
+  },
 ];
 
 export default class App extends React.Component {
@@ -109,7 +106,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { width } = Dimensions.get("window");
+    const {width} = Dimensions.get('window');
     const height = 256;
     return (
       <ScrollableTabView renderTabBar={this.renderTabBar}>
@@ -117,20 +114,19 @@ export default class App extends React.Component {
           const labelStyle = {
             color: chartConfig.color(),
             marginVertical: 10,
-            textAlign: "center",
-            fontSize: 16
+            textAlign: 'center',
+            fontSize: 16,
           };
           const graphStyle = {
             marginVertical: 8,
-            ...chartConfig.style
+            ...chartConfig.style,
           };
           return (
             <ScrollView
               key={Math.random()}
               style={{
-                backgroundColor: chartConfig.backgroundColor
-              }}
-            >
+                backgroundColor: chartConfig.backgroundColor,
+              }}>
               <Text style={labelStyle}>Bezier Line Chart</Text>
               <LineChart
                 bezier
@@ -142,11 +138,11 @@ export default class App extends React.Component {
                 chartConfig={chartConfig}
                 style={graphStyle}
                 verticalLabelRotation={20}
-                onDataPointClick={({ value, getColor }) =>
+                onDataPointClick={({value, getColor}) =>
                   showMessage({
                     message: `${value}`,
-                    description: "You selected this value",
-                    backgroundColor: getColor(0.9)
+                    description: 'You selected this value',
+                    backgroundColor: getColor(0.9),
                   })
                 }
                 formatXLabel={label => label.toUpperCase()}
@@ -201,7 +197,7 @@ export default class App extends React.Component {
                 percentile
               />
               <Text style={labelStyle}>Pie Chart</Text>
-              <PieChart
+              {/* <PieChart
                 data={pieChartData}
                 height={height}
                 width={width}
@@ -210,7 +206,7 @@ export default class App extends React.Component {
                 style={graphStyle}
                 backgroundColor="transparent"
                 paddingLeft="15"
-              />
+              /> */}
               <Text style={labelStyle}>Line Chart</Text>
               <LineChart
                 data={data}
@@ -225,7 +221,7 @@ export default class App extends React.Component {
                 values={contributionData}
                 width={width}
                 height={height}
-                endDate={new Date("2016-05-01")}
+                endDate={new Date('2016-05-01')}
                 numDays={105}
                 chartConfig={chartConfig}
                 style={graphStyle}
@@ -253,7 +249,7 @@ export default class App extends React.Component {
                 segments={5}
                 chartConfig={{
                   ...chartConfig,
-                  useShadowColorFromDataset: true
+                  useShadowColorFromDataset: true,
                 }}
                 style={graphStyle}
                 hidePointsAtIndex={[0, data.datasets[0].data.length - 1]}
@@ -263,12 +259,12 @@ export default class App extends React.Component {
               <LineChart
                 data={{
                   labels: [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June"
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
                   ],
                   datasets: [
                     {
@@ -279,12 +275,12 @@ export default class App extends React.Component {
                         Math.random() * 100,
                         Math.random() * 100,
                         Math.random() * 100,
-                        Math.random() * 100
-                      ]
-                    }
-                  ]
+                        Math.random() * 100,
+                      ],
+                    },
+                  ],
                 }}
-                width={Dimensions.get("window").width} // from react-native
+                width={Dimensions.get('window').width} // from react-native
                 height={220}
                 withInnerLines={false}
                 withDots={false}
@@ -292,34 +288,34 @@ export default class App extends React.Component {
                 withScrollableDot={true}
                 yAxisInterval={1} // optional, defaults to 1
                 chartConfig={{
-                  backgroundGradientFrom: "#1F1F1F",
+                  backgroundGradientFrom: '#1F1F1F',
                   decimalPlaces: 2, // optional, defaults to 2dp
-                  color: (opacity = 1) => "#FF5500",
-                  labelColor: (opacity = 1) => "#A0A0A0",
-                  linejoinType: "round",
+                  color: (opacity = 1) => '#FF5500',
+                  labelColor: (opacity = 1) => '#A0A0A0',
+                  linejoinType: 'round',
 
-                  scrollableDotFill: "#fff",
+                  scrollableDotFill: '#fff',
                   scrollableDotRadius: 6,
-                  scrollableDotStrokeColor: "#FF5500",
+                  scrollableDotStrokeColor: '#FF5500',
                   scrollableDotStrokeWidth: 3,
 
                   scrollableInfoViewStyle: {
-                    justifyContent: "center",
-                    alignContent: "center",
-                    backgroundColor: "#121212",
-                    borderRadius: 2
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                    backgroundColor: '#121212',
+                    borderRadius: 2,
                   },
                   scrollableInfoTextStyle: {
-                    color: "#C4C4C4",
+                    color: '#C4C4C4',
                     marginHorizontal: 4,
                     flex: 1,
-                    textAlign: "center"
+                    textAlign: 'center',
                   },
-                  scrollableInfoSize: { width: 65, height: 30 },
-                  scrollableInfoOffset: 15
+                  scrollableInfoSize: {width: 65, height: 30},
+                  scrollableInfoOffset: 15,
                 }}
                 style={{
-                  marginVertical: 8
+                  marginVertical: 8,
                 }}
               />
             </ScrollView>
