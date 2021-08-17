@@ -1,8 +1,10 @@
 {
   "name": "champi-react-native-chart-kit",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": false,
+  "_main": "./node_modules/expo/AppEntry.js",
   "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
