@@ -216,7 +216,7 @@ class AbstractChart<
       }
 
       const basePosition = height * verticalLabelsHeightPercentage;
-      const x = screenWidth; // [TO-DO]: Adjust this variable that manages the x position of the horizontal labels (paddingRight - yLabelsOffset) + 
+      const x = screenWidth;
       const y =
         count === 1 && this.props.fromZero
           ? paddingTop + 4
